@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject"
+        android:textColor="#000000" />
+
+    <EditText
+        android:background="@drawable/edit_text_background"
+        android:id="@+id/subjectET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your subject" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Starting Time"
+        android:textColor="#000000" />
+
+
+    <EditText
+        android:background="@drawable/edit_text_background"
+        android:id="@+id/StatTimeET"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Starting time" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ending Time"
+        android:textColor="#000000" />
+
+
+    <EditText
+        android:background="@drawable/edit_text_background"
+        android:id="@+id/EndTimeET"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Ending time" />
+
+
+    <TextView
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Select One" />
+
+    <RadioGroup
+        android:background="@drawable/edit_text_background"
+        android:id="@+id/stateRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done" />
+
+        <RadioButton
+            android:id="@+id/in_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In Progress" />
+
+        <RadioButton
+            android:id="@+id/planned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Planned" />
+
+        <RadioButton
+            android:id="@+id/not_accomplished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not Accomplished" />
+
+    </RadioGroup>
+
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:textColor="#B22222"
+            android:id="@+id/cancelBtn"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cancel_btn"
+            android:text="Cancel" />
+
+        <Button
+            android:textColor="#15317E"
+            android:id="@+id/saveBtn"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/save_btn"
+            android:text="Save" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

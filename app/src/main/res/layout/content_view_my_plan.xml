@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/coordinateLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ViewMyPlanActivity"
+    tools:showIn="@layout/activity_view_my_plan">
+    <TextView
+        android:id="@+id/text_message_reply"
+        android:layout_marginTop="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:text="Welcome"
+            android:background="@drawable/planner"
+            android:id="@+id/DateDisplayTV"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/planRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>
