@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ViewMyPlanActivity extends AppCompatActivity {
+public class ViewMyPlanActivity extends AppCompatActivity implements OnClickListener{
 
     public static final int TEXT_REQUEST = 1;
 
@@ -61,7 +61,7 @@ public class ViewMyPlanActivity extends AppCompatActivity {
         mPlanArrayList = new ArrayList<>();
 
         mPlanRecyclerView = (RecyclerView) findViewById(R.id.planRecyclerView);
-        mPlanAdapter = new PlanAdapter(mPlanArrayList, this);
+        mPlanAdapter = new PlanAdapter(mPlanArrayList, getApplicationContext(), this);
         mPlanRecyclerView.setAdapter(mPlanAdapter);
         mPlanRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -80,13 +80,46 @@ public class ViewMyPlanActivity extends AppCompatActivity {
                 String endTime = data.getStringExtra(PlanEditActivity.EXTRA_RETURN_MESSAGE1);
                 String subject = data.getStringExtra(PlanEditActivity.EXTRA_RETURN_MESSAGE2);
                 String state = data.getStringExtra(PlanEditActivity.EXTRA_RETURN_MESSAGE3);
+                int id = data.getIntExtra(PlanEditActivity.EXTRA_RETURN_MESSAGE4, -1);
+                if(id == -1) {
+                    Plan plan = new Plan(subject, startTime, endTime, state);
+                    mPlanArrayList.add(plan);
+                    mPlanAdapter.notifyDataSetChanged();
+                }
+                else{
+                    for(int i = 0; i < mPlanArrayList.size(); i++) {
+                        if(mPlanArrayList.get(i).getId() == id) {
+                            Plan plan = new Plan(subject, startTime, endTime, state);
+                            mPlanArrayList.remove(i);
+                            mPlanArrayList.add(i, plan);
+                            return;
+                        }
+                    }
+                    return;
+                }
 
-                Plan plan = new Plan(subject, startTime, endTime, state);
-                mPlanArrayList.add(plan);
-                mPlanAdapter.notifyDataSetChanged();
+//                Plan plan = new Plan(subject, startTime, endTime, state);
+//                mPlanArrayList.add(plan);
+//                mPlanAdapter.notifyDataSetChanged();
             }
         }
     }
 
 
+    @Override
+    public void onClickViewHolder(View view, int pos) {
+        final Plan plan = mPlanArrayList.get(pos);
+        String subject = plan.getSubject();
+        String startTime = plan.getStartTime();
+        String endTime = plan.getEndTime();
+
+
+        Intent intent = new Intent(this, PlanEditActivity.class);
+        intent.putExtra("id", plan.getId());
+        intent.putExtra("subject", subject);
+        intent.putExtra("startTime", startTime);
+        intent.putExtra("endTime", endTime);
+        startActivity(intent);
+
+    }
 }

@@ -1,7 +1,9 @@
 package com.seankim.hsschedulemanager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +19,13 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
     private ArrayList<Plan> mPlanArrayList;
     private Context mContext;
     private LayoutInflater mLayoutInflator;
+    private OnClickListener mDelegate;
 
-    public PlanAdapter(ArrayList<Plan> mPlanArrayList, Context mContext) {
+    public PlanAdapter(ArrayList<Plan> mPlanArrayList, Context mContext, OnClickListener delegate) {
         this.mPlanArrayList = mPlanArrayList;
         this.mContext = mContext;
         mLayoutInflator = LayoutInflater.from(mContext);
+        mDelegate = delegate;
     }
 
 
@@ -35,7 +39,6 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
     @Override
     public void onBindViewHolder(@NonNull PlanAdapter.PlanViewHolder planViewHolder, int i) {
         planViewHolder.bind(mPlanArrayList.get(i));
-
     }
 
     @Override
@@ -48,8 +51,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
         private TextView mEndTime;
         private TextView mSubject;
         private TextView mState;
-
-
+        private ConstraintLayout mConstraint;
 
         public PlanViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +59,9 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
             mEndTime = itemView.findViewById(R.id.endTimeTV);
             mSubject = itemView.findViewById(R.id.subjectTV);
             mState = itemView.findViewById(R.id.stateMessageTV);
+            mConstraint = itemView.findViewById(R.id.constraintLayout);
+            itemView.setOnClickListener(this);
+
         }
 
         public void bind(Plan plan) {
@@ -68,7 +73,11 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
 
         @Override
         public void onClick(View v) {
-
+            int pos = getAdapterPosition();
+            mDelegate.onClickViewHolder(v, pos);
         }
     }
+}
+interface OnClickListener {
+    void onClickViewHolder(View view, int pos);
 }
