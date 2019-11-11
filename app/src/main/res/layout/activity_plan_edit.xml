@@ -16,7 +16,7 @@
         android:id="@+id/subjectET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Your subject" />
+        android:hint=" Enter Your subject" />
 
     <TextView
         android:layout_marginTop="20dp"
@@ -25,13 +25,27 @@
         android:text="Starting Time"
         android:textColor="#000000" />
 
-
-    <EditText
-        android:background="@drawable/edit_text_background"
-        android:id="@+id/StatTimeET"
-        android:layout_width="155dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter Starting time" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:background="@drawable/edit_text_background"
+            android:id="@+id/StartHourET"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:hint=" Enter hour (0-12)" />
+        <EditText
+            android:id="@+id/StartMinuteET"
+            android:hint=" Enter minute (0-60)"
+            android:layout_marginStart="31dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
 
     <TextView
         android:layout_marginTop="20dp"
@@ -40,13 +54,28 @@
         android:text="Ending Time"
         android:textColor="#000000" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:background="@drawable/edit_text_background"
-        android:id="@+id/EndTimeET"
-        android:layout_width="145dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter Ending time" />
+
+        <EditText
+            android:background="@drawable/edit_text_background"
+            android:id="@+id/EndHourET"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:hint=" Enter hour (0-12)" />
+
+        <EditText
+            android:id="@+id/EndMinuteET"
+            android:hint=" Enter minute (0-60)"
+            android:layout_marginStart="31dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 
     <TextView
@@ -80,20 +109,20 @@
             android:layout_height="wrap_content"
             android:text="Planned" />
 
-        <RadioButton
-            android:id="@+id/not_accomplished"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Not Accomplished" />
+
 
     </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
 
     <LinearLayout
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         android:orientation="horizontal">
 
         <Button

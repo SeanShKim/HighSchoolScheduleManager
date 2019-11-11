@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -47,28 +49,48 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
     }
 
     class PlanViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView mStartTime;
-        private TextView mEndTime;
+        private TextView mStartHour;
+        private TextView mStartMinute;
+        private TextView mEndHour;
+        private TextView mEndMinute;
         private TextView mSubject;
         private TextView mState;
+        private Button mStateButton;
         private ConstraintLayout mConstraint;
 
         public PlanViewHolder(@NonNull View itemView) {
             super(itemView);
-            mStartTime = itemView.findViewById(R.id.startTimeTV);
-            mEndTime = itemView.findViewById(R.id.endTimeTV);
+            mStartHour = itemView.findViewById(R.id.startHourTV);
+            mStartMinute = itemView.findViewById(R.id.startMinuteTV);
+            mEndHour = itemView.findViewById(R.id.endHourTV);
+            mEndMinute = itemView.findViewById(R.id.endMinuteTV);
             mSubject = itemView.findViewById(R.id.subjectTV);
             mState = itemView.findViewById(R.id.stateMessageTV);
             mConstraint = itemView.findViewById(R.id.constraintLayout);
+            mStateButton = itemView.findViewById(R.id.stateBtn);
             itemView.setOnClickListener(this);
 
         }
 
         public void bind(Plan plan) {
-            mStartTime.setText(plan.getStartTime());
-            mEndTime.setText(plan.getEndTime());
+            mStartHour.setText(plan.getStartHour());
+            mEndHour.setText(plan.getEndHour());
+            mStartMinute.setText(plan.getStartMinute());
+            mEndMinute.setText(plan.getEndMinute());
             mSubject.setText(plan.getSubject());
             mState.setText(plan.getState());
+
+            switch (plan.getActualState()) {
+                case IN_PROGRESS:
+                    mStateButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.in_progress_btn));
+                    break;
+                case DONE:
+                    mStateButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.done_btn));
+                    break;
+                case PLANNED:
+                    mStateButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.planned_btn));
+                    break;
+            }
         }
 
         @Override
@@ -81,3 +103,4 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
 interface OnClickListener {
     void onClickViewHolder(View view, int pos);
 }
+
